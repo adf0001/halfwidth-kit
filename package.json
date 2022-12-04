@@ -1,0 +1,23 @@
+{
+  "name": "halfwidth-kit",
+  "version": "1.0.0",
+  "description": "halfwidth kit",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "keywords": [
+    "halfwidth",
+    "kit"
+  ],
+  "author": "fwg",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adf0001/halfwidth-kit.git"
+  },
+  "bugs": {
+    "url": "https://github.com/adf0001/halfwidth-kit/issues"
+  },
+  "homepage": "https://github.com/adf0001/halfwidth-kit#readme"
+}
