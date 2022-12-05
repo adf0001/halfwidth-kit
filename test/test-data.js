@@ -24,11 +24,13 @@ module.exports = {
 			halfwidth_kit.length("😄", false) === 1 &&		//fail, the "😄" \u{1F604} is not in the Fullwidth definition
 			halfwidth_kit.length("😄", /[^😄\u1100-\u115F\u11A3-\u11A7]+/ug) === 2 &&		//user-defined, omit the rest
 
-			halfwidth_kit.length("𞤲𞥋𞤣𞤫") === 8 &&	//4 different adlam chars, not in the Halfwidth definition
+			//4 different Adlam chars, escape("𞤲𞥋𞤣𞤫") === '%uD83A%uDD32%uD83A%uDD4B%uD83A%uDD23%uD83A%uDD2B'
+			halfwidth_kit.length("𞤲𞥋𞤣𞤫") === 8 &&	//not in the Halfwidth definition
 			halfwidth_kit.length("𞤲𞥋𞤣𞤫", false) === 4 &&	//also not in the Fullwidth definition
 			/*
-			In author's VsCode, the 4 chars is shown as 4 'unknown's, that is, 4 same halfwidth chars,
-				so this test add them to the halfwidth charset, to make the result equals 4.
+			In author's VsCode, without Adlam font support, the 4 chars is shown as 4 'unknown's,
+				i.e. 4 same halfwidth 'unknown' chars, so this test add them to the halfwidth charset,
+				to make the result equals 4.
 			refer:
 				https://fuhaoku.net/block/Adlam
 				https://www.unicode.org/charts/PDF/U1E900.pdf
@@ -41,6 +43,60 @@ module.exports = {
 			//In author's VsCode, only the "∈" is a Fullwidth char, so the test want result be 10.
 			halfwidth_kit.length("∀𝑥∈ℝ,𝑥²≥0", /[∀𝑥ℝ,𝑥²≥0]+/ug) === 10 &&	//defined the Halfwidth
 			halfwidth_kit.length("∀𝑥∈ℝ,𝑥²≥0", /[^∈\u1100-\u115F\u11A3-\u11A7]+/ug) === 10 &&	//or defined the Fullwidth
+
+			true
+		));
+	},
+
+	"getIndex": function (done) {
+		//if (typeof window !==/=== "undefined") throw "disable for browser/nodejs";
+
+		done(!(
+			halfwidth_kit.getIndex("12", 0, 0) === 0 &&
+			halfwidth_kit.getIndex("12", 0, 1) === 1 &&
+			halfwidth_kit.getIndex("12", 0, 2) === 2 &&
+			halfwidth_kit.getIndex("12", 0, 3) === 2 &&
+
+			halfwidth_kit.getIndex("12", 1, 0) === 1 &&
+			halfwidth_kit.getIndex("12", 1, 1) === 2 &&
+			halfwidth_kit.getIndex("12", 1, 2) === 2 &&
+
+			halfwidth_kit.getIndex("一二", 0, 0) === 0 &&
+			halfwidth_kit.getIndex("一二", 0, 1) === 0 &&
+			halfwidth_kit.getIndex("一二", 0, 2) === 1 &&
+			halfwidth_kit.getIndex("一二", 0, 3) === 1 &&
+			halfwidth_kit.getIndex("一二", 0, 4) === 2 &&
+			halfwidth_kit.getIndex("一二", 0, 5) === 2 &&
+			halfwidth_kit.getIndex("一二", 0, 6) === 2 &&
+
+			halfwidth_kit.getIndex("一二", 1, 0) === 1 &&
+			halfwidth_kit.getIndex("一二", 1, 1) === 1 &&
+			halfwidth_kit.getIndex("一二", 1, 2) === 2 &&
+			halfwidth_kit.getIndex("一二", 1, 3) === 2 &&
+			halfwidth_kit.getIndex("一二", 1, 4) === 2 &&
+
+			halfwidth_kit.getIndex("12一二", 0, 2) === 2 &&
+			halfwidth_kit.getIndex("12一二", 0, 3) === 2 &&
+			halfwidth_kit.getIndex("12一二", 0, 4) === 3 &&
+			halfwidth_kit.getIndex("12一二", 0, 5) === 3 &&
+			halfwidth_kit.getIndex("12一二", 0, 6) === 4 &&
+			halfwidth_kit.getIndex("12一二", 0, 7) === 4 &&
+
+			halfwidth_kit.getIndex("12一二34", 3, 2) === 4 &&
+			halfwidth_kit.getIndex("12一二34", 3, 3) === 5 &&
+			halfwidth_kit.getIndex("12一二34", 3, 4) === 6 &&
+			halfwidth_kit.getIndex("12一二34", 3, 5) === 6 &&
+
+			halfwidth_kit.getIndex("12一二34三四", 3, 6) === 7 &&
+			halfwidth_kit.getIndex("12一二34三四", 3, 99) === 8 &&
+
+			halfwidth_kit.getIndex("12一二34三四", 0, 8) === 6 &&
+			halfwidth_kit.getIndex("12一二34三四", 0, 9) === 6 &&
+			halfwidth_kit.getIndex("12一二34三四", 0, 10) === 7 &&
+
+			halfwidth_kit.getIndex("一二34三四56", 0, 6) === 4 &&
+			halfwidth_kit.getIndex("一二34三四56", 0, 7) === 4 &&
+			halfwidth_kit.getIndex("一二34三四56", 0, 8) === 5 &&
 
 			true
 		));
