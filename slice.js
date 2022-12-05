@@ -13,8 +13,8 @@ halfwidthSlice( str, startHalfwidth, endHalfwidth [, regHalfwidth ] )
 
 	endHalfwidth
 		The end halfwidth index.
-		Set null/undefined to indecate the end of the string.
-		Set 0 to indecate the start of the string.
+		Set null/undefined to indicate the end of the string.
+		Set 0 to indicate the start of the string.
 		If endHalfwidth < 0, it will be counted from the end of the string.
 
 	regHalfwidth
@@ -37,8 +37,8 @@ module.exports = function halfwidthSlice(str, startHalfwidth, endHalfwidth, regH
 	if (endHalfwidth > 0) {
 		endIndex = get_index(str, 0, endHalfwidth, regHalfwidth);
 	}
-	else if (endHalfwidth === 0) endIndex = 0;	//0 to indecate the start of the string.
-	else if (!endHalfwidth) endIndex = str.length;	//null/undefined to indecate the end of the string
+	else if (endHalfwidth === 0) endIndex = 0;	//0 to indicate the start of the string.
+	else if (!endHalfwidth) endIndex = str.length;	//null/undefined to indicate the end of the string
 	else if (!(endHalfwidth < 0)) endIndex = str.length;
 
 	//negative

@@ -98,12 +98,10 @@ module.exports = {
 			halfwidth_kit.getIndex("一二34三四56", 0, 7) === 4 &&
 			halfwidth_kit.getIndex("一二34三四56", 0, 8) === 5 &&
 
-			//"A\uD87E\uDC04Z"==='A你Z'
-			//Note: '你'!=='你', they are different unicode, escape('你')==='%uD87E%uDC04', escape('你')==='%u4F60'
-			halfwidth_kit.getIndex("A\uD87E\uDC04Z", 0, 1) === 1 &&
-			halfwidth_kit.getIndex("A\uD87E\uDC04Z", 0, 2) === 1 &&
-			halfwidth_kit.getIndex("A\uD87E\uDC04Z", 0, 3) === 3 &&
-			halfwidth_kit.getIndex("A\uD87E\uDC04Z", 0, 4) === 4 &&
+			halfwidth_kit.getIndex("A😄Z", 0, 1) === 1 &&
+			halfwidth_kit.getIndex("A😄Z", 0, 2) === 1 &&
+			halfwidth_kit.getIndex("A😄Z", 0, 3) === 3 &&
+			halfwidth_kit.getIndex("A😄Z", 0, 4) === 4 &&
 
 			true
 		));

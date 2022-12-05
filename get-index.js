@@ -10,7 +10,7 @@ halfwidthIndex( str, startIndex, halfwidthCount [, regHalfwidth ] )
 		The start index of the string.
 
 		Note: If startIndex is not from head, i.e value 0, be careful to select a startIndex
-			to avoid spliting a unicode char. An example: "A\uD87E\uDC04Z".slice(0,2) === 'A\uD87E',
+			to avoid spliting a unicode char. An example: "A😄Z".slice(0,2) === 'A\uD83D',
 			in this case, the startIndex should be 1 or 3, not a 2 that cause error.
 
 	halfwidthCount
