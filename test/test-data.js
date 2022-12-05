@@ -28,7 +28,7 @@ module.exports = {
 			halfwidth_kit.length("𞤲𞥋𞤣𞤫") === 8 &&	//not in the Halfwidth definition
 			halfwidth_kit.length("𞤲𞥋𞤣𞤫", false) === 4 &&	//also not in the Fullwidth definition
 			/*
-			In author's VsCode, without Adlam font support, the 4 chars is shown as 4 'unknown's,
+			In author's VsCode, without Adlam font support, the 4 chars are shown as 4 'unknown's,
 				i.e. 4 same halfwidth 'unknown' chars, so this test add them to the halfwidth charset,
 				to make the result equals 4.
 			refer:
@@ -97,6 +97,13 @@ module.exports = {
 			halfwidth_kit.getIndex("一二34三四56", 0, 6) === 4 &&
 			halfwidth_kit.getIndex("一二34三四56", 0, 7) === 4 &&
 			halfwidth_kit.getIndex("一二34三四56", 0, 8) === 5 &&
+
+			//"A\uD87E\uDC04Z"==='A你Z'
+			//Note: '你'!=='你', they are different unicode, escape('你')==='%uD87E%uDC04', escape('你')==='%u4F60'
+			halfwidth_kit.getIndex("A\uD87E\uDC04Z", 0, 1) === 1 &&
+			halfwidth_kit.getIndex("A\uD87E\uDC04Z", 0, 2) === 1 &&
+			halfwidth_kit.getIndex("A\uD87E\uDC04Z", 0, 3) === 3 &&
+			halfwidth_kit.getIndex("A\uD87E\uDC04Z", 0, 4) === 4 &&
 
 			true
 		));
