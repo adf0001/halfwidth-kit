@@ -55,6 +55,8 @@ module.exports = function halfwidthIndex(str, startIndex, halfwidthCount, regHal
 		}
 		lastIndex += s.length;
 		halfwidthCount -= sl;
+
+		if (lastIndex != regHalfwidth.lastIndex) throw Error("internal error, lastIndex fail");
 	}
 	return lastIndex;
 }

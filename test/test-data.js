@@ -102,6 +102,29 @@ module.exports = {
 		));
 	},
 
+	"slice": function (done) {
+		//if (typeof window !==/=== "undefined") throw "disable for browser/nodejs";
+
+		done(!(
+			halfwidth_kit.slice("12一二34三四", 0, 2) === "12" &&
+			halfwidth_kit.slice("12一二34三四", 0, 3) === "12" &&
+			halfwidth_kit.slice("12一二34三四", 0, 4) === "12一" &&
+			halfwidth_kit.slice("12一二34三四", 2, -2) === "一二34三" &&
+			halfwidth_kit.slice("12一二34三四", 3, -3) === "一二34三" &&
+			halfwidth_kit.slice("12一二34三四", 4, -4) === "二34" &&
+
+			halfwidth_kit.slice("12一二34三四", -1) === "" &&
+			halfwidth_kit.slice("12一二34三四", -2) === "四" &&
+			halfwidth_kit.slice("12一二34三四", -3) === "四" &&
+			halfwidth_kit.slice("12一二34三四", -4) === "三四" &&
+			halfwidth_kit.slice("12一二3", -1) === "3" &&
+			halfwidth_kit.slice("12一二3", -2) === "3" &&
+			halfwidth_kit.slice("12一二3", -3) === "二3" &&
+
+			true
+		));
+	},
+
 	"check exports": function (done) {
 		var m = halfwidth_kit;
 		for (var i in m) {
